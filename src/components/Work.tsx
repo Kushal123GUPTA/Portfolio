@@ -20,6 +20,13 @@ const projects = [
     tools: "Python, Pandas, NumPy, Random Forest, Streamlit",
     image: "/crop_advisor.png",
     link: "https://crop-advisor.streamlit.app/"
+  },
+  {
+    name: "Enterprise CRM",
+    category: "Business Management Software",
+    tools: "Next.js, React.js, Node.js, PostgreSQL, API Integrations",
+    image: "/crm_dashboard.png",
+    link: "#"
   }
 ];
 

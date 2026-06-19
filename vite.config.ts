@@ -8,11 +8,11 @@ dotenv.config({ path: ".env.local" });
 const contactApiPlugin = () => {
   return {
     name: "contact-api",
-    configureServer(server) {
-      server.middlewares.use(async (req, res, next) => {
+    configureServer(server: any) {
+      server.middlewares.use(async (req: any, res: any, next: any) => {
         if (req.url === "/api/contact" && req.method === "POST") {
           let body = "";
-          req.on("data", (chunk) => {
+          req.on("data", (chunk: any) => {
             body += chunk.toString();
           });
           req.on("end", async () => {

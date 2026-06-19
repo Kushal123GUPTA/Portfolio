@@ -26,7 +26,7 @@ const projects = [
     category: "Business Management Software",
     tools: "Next.js, React.js, Node.js, PostgreSQL, API Integrations",
     image: "/crm_dashboard.png",
-    link: "#"
+    link: ""
   }
 ];
 

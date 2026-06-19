@@ -10,8 +10,8 @@ import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
 
-const TechStack = lazy(() => import("./TechStack"));
-
+import TechStack from "./TechStack";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
     window.innerWidth > 1024
@@ -21,11 +21,19 @@ const MainContainer = ({ children }: PropsWithChildren) => {
     const resizeHandler = () => {
       setSplitText();
       setIsDesktopView(window.innerWidth > 1024);
+      ScrollTrigger.refresh();
     };
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
+    
+    // Refresh scroll trigger after a short delay to account for lazy loading/image loading
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
+
     return () => {
       window.removeEventListener("resize", resizeHandler);
+      clearTimeout(timeoutId);
     };
   }, [isDesktopView]);
 
@@ -43,11 +51,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <WhatIDo />
             <Career />
             <Work />
-            {isDesktopView && (
-              <Suspense fallback={<div>Loading....</div>}>
-                <TechStack />
-              </Suspense>
-            )}
+            {isDesktopView && <TechStack />}
             <Contact />
           </div>
         </div>
